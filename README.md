@@ -45,4 +45,6 @@ rosrun nicks_bot navigation_goal
 
 <p>The nicks_bot robot clearly takes a more direct path to the goal and the particle filter converges significantly faster. However, due to the decreased frequency the robot is able to update itself they both achieve similar results, reaching the goal location in under five minutes.</p>
 
+<h4 align="left">Future Work</h4>
 
+<p>In the future I think it would be interesting to tune the models to work on a real robot that actually navigated around a maze. Furthermore I would like to rebuild this project using a four wheeled robot and using the move-base package accordingly. I think that the two wheeled robot with two casters to keep it balanced simplifies the problem beyond what is realisitic for real life usage in an unknown or rough terrained enviroment.</p>
