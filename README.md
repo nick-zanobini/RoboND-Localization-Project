@@ -9,8 +9,8 @@
 
 <p>In this paper two different robot models are evauluated with two different LIDAR sensors using Adaptive MCL. With extensive expiramentation various parameters of the alogirthms are used to tune and optimize localization and navigation through the provided maze.</p>
 
-<center><img src="/home/nickzanobini/catkin_ws/src/RoboND-Localization-Project/watermarked/lidars.png"></center>
-<center><img src="/home/nickzanobini/catkin_ws/src/RoboND-Localization-Project/watermarked/maze.png"></center>
+<center><img src="./watermarked/lidars.png"></center>
+<center><img src="./watermarked/maze.png"></center>
 
 <h4 align="left">Simulation Results</h4>
 <p>This project was simulated in Gazebo and RVIZ was used for visualization of the sensor readings, and how the different parameters help the robot localize itself.</p>
@@ -25,7 +25,7 @@ roslaunch udacity_bot amcl.launch
 rosrun udacity_bot navigation_goal
 ```
 
-<center><img src="/home/nickzanobini/catkin_ws/src/RoboND-Localization-Project/watermarked/udacity_bot_at_goal.png"></center>
+<center><img src="./watermarked/udacity_bot_at_goal.png"></center>
 
 <h5>Nicks Model</h5>
 
@@ -35,7 +35,7 @@ roslaunch nicks_bot amcl.launch
 rosrun nicks_bot navigation_goal
 ```
 
-<center><img src="/home/nickzanobini/catkin_ws/src/RoboND-Localization-Project/watermarked/nicks_bot_at_goal_point_cloud.png"></center>
+<center><img src="./watermarked/nicks_bot_at_goal_point_cloud.png"></center>
 
 <p>As shown in the images above, both robots were able to reach their goal location. The main difference between the two models is the nicks_bot package uses a Velodyne VLP-16 Lidar. This lidar is very popular commercailly and is commonly found on many self driving cars. The use of this lidar in simulation required the parameters of the map to be greatly reduced as the amount of data recived from the Velodyne Lidar was significantly higher than that of the Hokuyo Lidar. In order to achieve results I felt were acceptable I also had to fine tune the AMCL parameters beyond the defualt values that worked initally for the udacity_bot package.</p>
 
