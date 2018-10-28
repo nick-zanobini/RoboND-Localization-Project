@@ -5,7 +5,15 @@
 <h4 align="left">Introduction</h4>
 <p>Autonomous navigation and localization is one of the most challenging tasks we have been tasked to acomplish. In order to do this, several things must happen; the robot must perceive its surroundings and interpret the sensor readings to localize itself. Once the robot has localized itself, or determined its position and pose it can decide on its next action and then continue onto executing that action</p>
 
-<p>In order to do this two different methods were tested: Kalaman Filters (KF) and Monte Carlo Locatization (MCL). Based on the performance characterisitcs of Adaptive Monte Carlo Locatlization (AMCL) and its performance benifits over an Extended Kalman Filter(EKF) AMCL was chosen as the desired localization algorithm.</p>
+<p>In order to do this two different methods were tested: Kalaman Filters (KF) and Monte Carlo Locatization (MCL). 
+
+<p>The Monte Carlo localization algorithm is similar to Kalman Filters because it estimates the posterior distribution of a robot’s position and orientation based on sensory updates but rather than using Gaussians it uses particles to model the robot's state.</p>
+
+<p>MCL solves the local and global localization problems but similar to KF is not suitable for addressing the kidnaped robot problem. This could be solved by resetting the distribution of particles turning the problem from the kidnapped robot problem to a global localization problem, the same as when the robot is initalized.</p>
+
+<p>Based on the performance characterisitcs of Adaptive Monte Carlo Locatlization (AMCL) and its performance benifits over an Extended Kalman Filter(EKF), AMCL was chosen as the desired localization algorithm.</p>
+
+<p>AMCL is a good localization alogrithm for a robot in an envioment that is constantly changing, such as a robotic vacuum or home service robot. Similarily, it would be good for use in a hospital envioment or nursing home where obstacles such as people are constantly changing.</p>
 
 <p>In this paper two different robot models are evauluated with two different LIDAR sensors using Adaptive MCL. With extensive expiramentation various parameters of the alogirthms are used to tune and optimize localization and navigation through the provided maze.</p>
 
@@ -43,7 +51,9 @@ rosrun nicks_bot navigation_goal
 
 <p>The Velodyne Lidar output a PointCloud2 by default and inorder to not have to change the behavior of the AMCL package the PointCloud2 data had to be converted into a LaserScan. This required settting a z value to average the sensor readings over inorder to determine where to estimate the laserscan at. Additonally I was unable to update the map and the controller as fast because this conversion took a significantly larger amount of processing power.</p>
 
-<p>The nicks_bot robot clearly takes a more direct path to the goal and the particle filter converges significantly faster. However, due to the decreased frequency the robot is able to update itself they both achieve similar results, reaching the goal location in under five minutes.</p>
+<p>The main parameters I tuned were decreasing the global and local map size and update frequencies. In the costmap_common_params I adjusted the distance range that the costmap shopuld be updated based on the laser scans inorder to add or remove obstacles. In order to keep the robot from colliding with the walls, I increased the inflation radius and the robot radius. This will help the navigation planner when calculating the global path. Lastly, I tuned the parameters for amcl. I reduced the maximum number of particles to 200 and the minimum to 25 inorder to compensate for the load the Velodyne Lidar was putting on the system as well as helping it converge faster.</p>
+
+<p>The nicks_bot robot clearly takes a more direct path to the goal and the particle filter converges significantly faster. Decreasing the map size increased how fast my computer could simulate the enviroment, but decreased the accuracy of the system. However, due to the decreased frequency the robot is able to update itself they both achieve similar results, reaching the goal location in under five minutes.</p>
 
 <h4 align="left">Future Work</h4>
 
